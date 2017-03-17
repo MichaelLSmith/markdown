@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = { value: '' };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event) {
+    this.setState({ value: event.target.value });
+  }
+
   render() {
+    console.log(this.state);
+    const {value} = this.state;
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <textarea name="text_input" rows="15" cols="50" value={this.state.value} onChange={this.handleChange} />
+        <div>{value}</div>
       </div>
     );
   }
