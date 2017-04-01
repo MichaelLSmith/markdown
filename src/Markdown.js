@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 
-const Markdown () => {
+const Markdown = (props) => {
   return (
-    <textarea
-      name="text_input"
-      rows="15"
-      cols="50"
-      value={this.state.value}
-      onChange={this.handleChange} 
-    />
+    <div>
+      <textarea
+        name="text_input"
+        rows="15"
+        cols="50"
+        onChange={(e) => {props.handleChange(e.target.value)}}
+      />
+    </div>
   )
 }
+
+export default Markdown;

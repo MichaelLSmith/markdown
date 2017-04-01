@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import  marked from 'marked';
+import marked from 'marked';
+import Markdown from './Markdown.js';
+
 import './App.css';
 
 class App extends Component {
@@ -7,13 +9,12 @@ class App extends Component {
     super(props);
     this.state = { value: 'Heading\n=======\n\nSub-heading\n-----------\n \n### Another deeper heading\n \nParagraphs are separated\nby a blank line.\n\nLeave 2 spaces at the end of a line to do a  \nline break\n\nText attributes *italic*, **bold**, \n`monospace`, ~~strikethrough~~ .\n\nShopping list:\n\n  * apples\n  * oranges\n  * pears\n\nNumbered list:\n\n  1. apples\n  2. oranges\n  3. pears\n\nThe rain---not the reign---in\nSpain.\n\n *[Michael Smith](https://freecodecamp.com/michaellsmith)*' };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.createMarkup = this.createMarkup.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    // this.createMarkup = this.createMarkup.bind(this);
   }
-  handleChange(event) {
-    this.setState({ value: event.target.value });
+  handleChange(val) {
+    this.setState({ value: val });
   }
-
   createMarkup(markedText) {
     return {__html: markedText};
   }
@@ -30,17 +31,12 @@ class App extends Component {
         <div className="container">
           <div className="row">
             <div className="col-xs-6">
-              <textarea 
-                name="text_input" 
-                rows="15" 
-                cols="50" 
-                value={this.state.value} 
-                onChange={this.handleChange} 
-              />
+              <Markdown
+                value={this.state.value} handleChange={this.handleChange.bind(this)}/>
             </div>
-              <div 
-                className="col-xs-6 output" 
-                dangerouslySetInnerHTML={this.createMarkup(markedText)} 
+              <div
+                className="col-xs-6 output"
+                dangerouslySetInnerHTML={this.createMarkup(markedText)}
               />
           </div>
         </div>
